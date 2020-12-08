@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Lab 5 (Шифр Хілла)</title>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+	<script src="chart.js"></script>
+	<script src="jquery.js"></script>
+	<script src="change.js"></script>
+	<meta charset="utf-8">
+</head>
+<body>
+	<div class="container" style="max-width: 1600px;">
+		<div class="row">
+			<div class="col-4">
+				<div class="header-h1">
+					<h1>Введіть текст</h1>
+				</div>
+				<textarea id="text"></textarea>
+			</div>
+			<div class="col-3">
+				<div class="header-h1">
+					<h1>Ключ</h1>
+				</div>
+				<div class="row" style="padding-bottom: 10px;">
+					<input id="key" value="MELNYKARS"></input>
+				</div>
+				<div class="row" style="padding-left: 20px;">
+					<div class="col-6">
+						<button type="button" onclick="encrypt_click()" class="btn decrypt">Зашифрувати</button>
+					</div>
+					<div class="col-6">
+						<button type="button" onclick="decrypt_click()" class="encrypt btn">Розшифрувати</button>
+					</div>
+				</div>
+			</div>
+			<div class="col-5">
+				<div class="header-h1">
+					<h1>Розшифрований/Зашифрований текст</h1>
+				</div>
+				<textarea id="text_decrypt"></textarea>
+			</div>
+		</div>
+		<br>
+		<div class="header-h1">
+			<h1>Статистичний аналіз введеного тексту</h1>
+		</div>
+		<div class="row">
+			<div class="col-6">
+				<canvas id="myChart"></canvas>
+			</div>
+			<div class="col-6">
+				<canvas id="myChart2"></canvas>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-6">
+				<canvas id="myChart3"></canvas>
+			</div>
+			<div class="col-6">
+				<canvas id="myChart4"></canvas>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-6">
+				<canvas id="myChart5"></canvas>
+			</div>
+			<div class="col-6">
+				<canvas id="myChart6"></canvas>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-6">
+				<canvas id="myChart7"></canvas>
+			</div>
+			<div class="col-6">
+				<canvas id="myChart8"></canvas>
+			</div>
+		</div>
+	</div>
+</body>
+<script src="main.js"></script>
+</html>
+
+<style>
+	input {
+		width: 100%;
+		font-family: "Montserrat", "sans-serif";
+		border: 0.1em solid #ccc;
+		border-radius: 0.5em;
+		font-size: 1.2rem;
+		letter-spacing: 1px;
+	}
+
+	textarea {
+		width: 100%;
+		padding: 0.7em;   /* space on all directions */
+
+		font-family: "Montserrat", "sans-serif";
+		border: 0.1em solid #ccc;
+		border-radius: 0.5em;
+		font-size: 1.2rem;
+		letter-spacing: 1px;
+	}
+
+	body {
+		margin: 10px;
+	}
+
+	.decrypt {
+		background: #6a1b9a;
+		color: #ffffff;
+		border: .125rem solid #ссс;
+	}
+
+	.encrypt {
+		color: #6a1b9a;
+		border: .125rem solid #6a1b9a;
+		background: #fff;
+	}
+
+	.encrypt:hover {
+		background: #6a1b9a;
+		color: #ffffff;
+		border: .125rem solid #ссс;
+	}
+
+	.decrypt:hover {
+		color: #6a1b9a;
+		border: .125rem solid #6a1b9a;
+		background: #fff;
+	}
+
+	.header-h1 {
+		position: relative;
+		margin-bottom: .5rem;
+		text-align: center;
+	}
+	.header-h1 h1 {
+		display: inline-block;
+		background: #fff;
+		margin-bottom: 0;
+		font-size: 1.5rem;
+		text-transform: uppercase;
+		padding: .5rem 1.5rem;
+		border: .125rem solid #6a1b9a;
+		color: #6a1b9a;
+	}
+	.header-h1 h1::after {
+		content: "";
+		position: absolute;
+		background: #6a1b9a;
+		height: .125rem;
+		left: 0;
+		top: 50%;
+		width: 100%;
+		transform: translateY(-50%);
+		z-index: -999;
+	}
+	.header-h1-dark h1 {
+		background: #6a1b9a;
+		color: #fff;
+	}
+	#cesar_text_decrypt, #cesar_text {
+		height: 100px;
+	}
+</style>
